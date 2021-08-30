@@ -5,6 +5,9 @@ import store from './store';
 import { VueAxios } from '@/utils/request.js';
 import '@/plugins/registComponents';
 
+import mock from './mock/index.js';
+Vue.use(mock);
+
 Vue.config.productionTip = false;
 Vue.use(VueAxios);
 
