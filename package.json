@@ -17,7 +17,7 @@
     "commit-msg": "node scripts/verifyCommit.js"
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": "eslint --fix",
+    "*.{js, vue}": "eslint --fix",
     "*": "prettier -w -u"
   },
   "config": {
