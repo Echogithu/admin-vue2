@@ -12,6 +12,19 @@
     "test-e2e-ci": "cypress run ",
     "test": "yarn test-unit && yarn test-e2e-ci"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verifyCommit.js"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": "eslint --fix",
+    "*": "prettier -w -u"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "dependencies": {
     "ant-design-vue": "^1.7.8",
     "axios": "^0.21.1",
@@ -53,18 +66,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verifyCommit.js"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue}": "eslint --fix",
-    "*": "prettier -w -u"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  }
+  ]
 }
