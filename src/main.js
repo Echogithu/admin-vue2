@@ -3,9 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import 'ant-design-vue/dist/antd.css';
-import { Button } from 'ant-design-vue';
-Vue.use(Button);
+import "@/plugins/registComponents";
 
 Vue.config.productionTip = false;
 

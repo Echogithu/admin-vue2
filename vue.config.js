@@ -4,6 +4,19 @@ function resolve(dir) {
 }
 
 module.exports = {
+  css: {
+    loaderOptions: {
+      less: {
+        modifyVars: {
+          /* less 变量覆盖，用于自定义 ant design 主题 */
+          // "primary-color": "#de0816",
+          // "link-color": "#de0816",
+          // "border-radius-base": "4px",
+        },
+        javascriptEnabled: true,
+      },
+    },
+  },
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src'))
