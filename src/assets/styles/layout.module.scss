@@ -1,0 +1,17 @@
+// layout的配置
+// 变量在js中使用
+
+// 侧边栏宽度
+$sider-bar-width: 250;
+$sider-collapsed-width: 80;
+
+// header
+$appHeaderHeight: 60px;
+$appHeaderBg: #fff;
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  siderBarWidth: $sider-bar-width;
+  siderCollapsedWidth: $sider-collapsed-width;
+}

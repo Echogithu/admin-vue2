@@ -13,9 +13,12 @@ module.exports = {
           // "link-color": "#de0816",
           // "border-radius-base": "4px",
         },
-        javascriptEnabled: true,
+        javascriptEnabled: true
       },
-    },
+      sass: {
+        prependData: `@import "@/assets/styles/variable.scss";`
+      }
+    }
   },
   chainWebpack: config => {
     config.resolve.alias

@@ -1,0 +1,40 @@
+@mixin result-icon-bg($bg-color: $primary-color, $size: 64px) {
+  width: 64px;
+  height: 64px;
+  background-color: $bg-color;
+  line-height: $size;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+}
+
+.common-title-base {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.success-icon-bg {
+  @include result-icon-bg;
+}
+
+.warn-icon-bg {
+  @include result-icon-bg(#f99018);
+}
+
+/* router view transition */
+.zoom-fade-enter-active,
+.zoom-fade-leave-active {
+  transition: transform 0.35s, opacity 0.28s ease-in-out;
+}
+
+.zoom-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.zoom-fade-leave-to {
+  opacity: 0;
+  transform: scale(1.03);
+}
