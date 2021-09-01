@@ -5,7 +5,7 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="bg-white">
-        <page-header></page-header>
+        <page-header :collapsed="collapsed"></page-header>
       </a-layout-header>
       <a-layout-content></a-layout-content>
     </a-layout>
@@ -16,18 +16,15 @@
 import PageHeader from './components/Header/index.vue';
 import SiderBar from './components/SiderBar/index.vue';
 import layoutVar from '@/assets/styles/layout.module.scss';
+import { mapGetters } from 'vuex';
 export default {
   name: 'Layouts',
   components: {
     PageHeader,
     SiderBar
   },
-  data() {
-    return {
-      collapsed: false
-    };
-  },
   computed: {
+    ...mapGetters('layout', ['collapsed']),
     asiderWidth: function () {
       return this.collapsed ? layoutVar.siderCollapsedWidth : layoutVar.siderBarWidth;
     }
