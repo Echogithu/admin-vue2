@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "eslint --ext .js,vue src/** --no-error-on-unmatched-pattern",
-    "commit": "git-cz",
+    "commit": "git add -A && git-cz",
     "test-unit": "jest",
     "test-e2e": "cypress open",
     "test-e2e-ci": "cypress run ",

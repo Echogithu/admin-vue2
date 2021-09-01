@@ -4,10 +4,10 @@
 其中javascriptEnabled的值必须为true，否则主题定制的样式无法生效
  */
 import Vue from 'vue';
-import { Button, Dropdown, Input, Layout, Menu, Avatar, Icon } from 'ant-design-vue';
+import { Button, Dropdown, Input, Layout, Avatar, Icon, Menu } from 'ant-design-vue';
 
 /*需要注册的组件名字, 注册之前需要确保已经import这个组件*/
-const components = [Button, Input, Layout, Menu, Dropdown, Avatar, Icon];
+const components = [Button, Input, Layout, Dropdown, Avatar, Icon, Menu];
 register(components);
 
 function register(components) {

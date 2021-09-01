@@ -7,7 +7,9 @@
       <a-layout-header class="bg-white">
         <page-header :collapsed="collapsed"></page-header>
       </a-layout-header>
-      <a-layout-content></a-layout-content>
+      <a-layout-content>
+        <router-view></router-view>
+      </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
