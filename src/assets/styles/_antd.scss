@@ -7,3 +7,8 @@
 .app-breadcrumb {
   display: inline-block;
 }
+
+.ant-layout-header {
+  height: $appHeaderHeight;
+  padding: 0px;
+}

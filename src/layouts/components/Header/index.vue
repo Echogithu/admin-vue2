@@ -1,11 +1,30 @@
 <template>
-  <div>头部</div>
+  <div class="page-header">
+    <Breadcrumb></Breadcrumb>
+    <AvatarMenu></AvatarMenu>
+  </div>
 </template>
 
 <script>
+import Breadcrumb from './Breadcrumb.vue';
+import AvatarMenu from './AvatarMenu.vue';
+
 export default {
-  name: 'LHeader'
+  name: 'LayoutHeader',
+  components: {
+    Breadcrumb,
+    AvatarMenu
+  }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page-header {
+  width: 100%;
+  height: $appHeaderHeight;
+  padding: 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
