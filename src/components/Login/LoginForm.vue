@@ -31,9 +31,9 @@ export default {
     return {
       form: {
         username: '',
-        password: '',
-        loading: false
-      }
+        password: ''
+      },
+      loading: false
     };
   },
   methods: {

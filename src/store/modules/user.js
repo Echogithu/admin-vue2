@@ -1,4 +1,4 @@
-import { loginApi } from '@/api/user';
+import { loginApi, logoutApi } from '@/api/user';
 import { ResponseCodeEnum } from '@/config/const/httpEnum';
 import { Storage } from '@/utils/storage';
 import { ACCESS_TOKEN, CURRENT_USER } from '@/store/mutation-types';
@@ -37,6 +37,26 @@ const actions = {
             commit('SET_USERINFO', userInfo);
           }
           resolve(res.data);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+
+  // 登出
+  logout({ commit }) {
+    return new Promise((resolve, reject) => {
+      logoutApi()
+        .then(res => {
+          if (res.code === ResponseCodeEnum.SUCCESS) {
+            commit('setUserInfo', '');
+            Storage.remove(ACCESS_TOKEN);
+            Storage.remove(CURRENT_USER);
+            resolve(true);
+          } else {
+            reject(false);
+          }
         })
         .catch(error => {
           reject(error);

@@ -14,11 +14,18 @@
 </template>
 
 <script>
+import { message } from 'ant-design-vue';
 export default {
   name: 'AvatarMenu',
   methods: {
-    doLogout() {
-      console.log('logout :>> ', '退出登录');
+    async doLogout() {
+      const res = await this.$store.dispatch('user/logout');
+      if (res) {
+        message.success('成功退出登录');
+        this.$router.push({
+          path: '/login'
+        });
+      }
     }
   }
 };
