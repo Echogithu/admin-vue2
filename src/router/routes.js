@@ -66,11 +66,11 @@ export const routes = [
         meta: { title: '导航3', icon: 'bar-chart' }
       }
     ]
+  },
+  {
+    name: 'Login',
+    path: '/login',
+    component: () => import('@/views/login/login.vue'),
+    meta: { title: '登录', hidden: true }
   }
-  // {
-  //   name: 'Login',
-  //   path: '/login',
-  //   component: () => import('@/views/login/login.vue'),
-  //   meta: { title: '登录', hidden: true },
-  // },
 ];

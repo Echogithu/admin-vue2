@@ -1,10 +1,14 @@
 <template>
-  <div>login</div>
+  <login></login>
 </template>
 
 <script>
+import Login from '@/components/Login/index.vue';
 export default {
-  name: 'Index'
+  name: 'LoginPage',
+  components: {
+    Login
+  }
 };
 </script>
 

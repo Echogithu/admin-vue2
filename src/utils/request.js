@@ -3,7 +3,7 @@ import { notification } from 'ant-design-vue';
 import { VueAxios } from './axios';
 
 // 创建 axios 实例
-const service = axios.create({
+const request = axios.create({
   // baseURL: '', // api base_url
   timeout: 15000 // 请求超时时间
 });
@@ -28,7 +28,7 @@ const err = error => {
 };
 
 // request interceptor
-service.interceptors.request.use(config => {
+request.interceptors.request.use(config => {
   // const token = Vue.ls.get(TOKEN_NAME)
   // if (token) {
   //   config.headers['Access-Token'] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
@@ -37,15 +37,17 @@ service.interceptors.request.use(config => {
 }, err);
 
 // response interceptor
-service.interceptors.response.use(response => {
+request.interceptors.response.use(response => {
   return response.data;
 }, err);
 
 const installer = {
   vm: {},
   install(Vue) {
-    Vue.use(VueAxios, service);
+    Vue.use(VueAxios, request);
   }
 };
 
-export { installer as VueAxios, service as axios };
+export default request;
+
+export { installer as VueAxios, request as axios };
