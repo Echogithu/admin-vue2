@@ -1,5 +1,12 @@
 <template>
-  <a-menu theme="dark" mode="inline" @click="clickMenuItem">
+  <a-menu
+    theme="dark"
+    mode="inline"
+    @click="clickMenuItem"
+    :selected-keys="selectedKeys"
+    :open-keys.sync="openKeys"
+    :defaultSelectedKeys="[$route.path]"
+  >
     <template v-for="route in menus">
       <sider-menu-item v-if="hasShowChildren(route.children)" :key="route.name" :route="route"></sider-menu-item>
       <sub-menu v-else :key="'sub-' + route.name" :route="route"></sub-menu>
@@ -12,6 +19,7 @@ import SubMenu from './SubMenu.vue';
 import SiderMenuItem from './SiderMenuItem.vue';
 import { routes } from '@/router/routes.js';
 import { isLink } from '@/utils/toolsFn.js';
+
 export default {
   name: 'SiderMenu',
   components: {
@@ -20,24 +28,42 @@ export default {
   },
   computed: {
     menus: () => {
-      console.log('routes :>> ', routes.find(item => item.name === 'Layout').children);
-
       return routes.find(item => item.name === 'Layout').children;
     }
   },
   data() {
     return {
       selectedKeys: [],
-      openKeys: []
+      openKeys: [],
+      defaultSelectedKeys: [this.$route.name]
     };
   },
+  mounted() {
+    if (!this.$store.state.layout.collapsed) {
+      this.initMenuOpen();
+    }
+    this.setMenuActive();
+  },
   methods: {
-    // 判断是否有可展示的children
-    hasShowChildren(children = []) {
-      const showingChildren = children.filter(item => {
-        return typeof item.meta.hidden === 'boolean' ? !item.meta.hidden : true;
-      });
-      return !showingChildren.length;
+    // 默认展开所处的路由菜单
+    initMenuOpen() {
+      const routeMatched = this.$route.matched;
+      this.openKeys = this.getOpenKeys(routeMatched[routeMatched.length - 1]);
+    },
+
+    // 设置选中的路由
+    setMenuActive() {
+      const route = this.$route.matched.concat();
+      this.selectedKeys = [route.pop().name];
+    },
+
+    // 获取展开keys
+    getOpenKeys(route, openKeys = []) {
+      if (route.parent && route.parent.name && route.parent.name !== 'Layout') {
+        openKeys.push(route.parent.name);
+        this.getOpenKeys(route.parent, openKeys);
+      }
+      return openKeys;
     },
 
     // 点击菜单
@@ -47,9 +73,21 @@ export default {
       } else {
         this.$router.push({ name: key });
       }
+    },
+
+    // 判断是否有可展示的children
+    hasShowChildren(children = []) {
+      const showingChildren = children.filter(item => {
+        return typeof item.meta.hidden === 'boolean' ? !item.meta.hidden : true;
+      });
+      return !showingChildren.length;
     }
   },
-  watch: {}
+  watch: {
+    $route() {
+      this.setMenuActive();
+    }
+  }
 };
 </script>
 
