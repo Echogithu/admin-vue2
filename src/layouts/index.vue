@@ -7,8 +7,10 @@
       <a-layout-header class="bg-white">
         <page-header :collapsed="collapsed"></page-header>
       </a-layout-header>
-      <a-layout-content>
-        <router-view></router-view>
+      <a-layout-content class="app-content">
+        <div class="app-content-card">
+          <router-view></router-view>
+        </div>
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -37,5 +39,14 @@ export default {
 <style lang="scss" scoped>
 .layout-container {
   height: 100%;
+  .app-content {
+    background: #f0f2f5;
+    padding: 24px;
+    &-card {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+    }
+  }
 }
 </style>

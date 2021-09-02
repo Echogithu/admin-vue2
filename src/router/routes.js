@@ -1,5 +1,5 @@
 import Layout from '@/layouts/index.vue';
-// import { RouterTransition } from '@/components/common/transition';
+import { RouterTransition } from '@/layouts/components/transition';
 
 export const routes = [
   {
@@ -12,20 +12,20 @@ export const routes = [
       {
         name: 'Home',
         path: '/home',
-        // component: RouterTransition,
+        component: RouterTransition,
         redirect: '/home/index',
         meta: { title: '首页', icon: 'snippets' },
         children: [
           {
             name: 'Index',
             path: 'index',
-            component: () => import('@/views/Home.vue'),
+            component: () => import('@/views/home/index.vue'),
             meta: { title: '测试1', icon: 'pie-chart' }
           },
           {
             name: 'Details',
             path: 'details',
-            component: () => import('@/views/About.vue'),
+            component: () => import('@/views/home/details.vue'),
             meta: { title: '测试2', icon: 'edit' }
           }
         ]
@@ -33,20 +33,20 @@ export const routes = [
       {
         name: 'Home2',
         path: '/home2',
-        // component: RouterTransition,
+        component: RouterTransition,
         redirect: '/home2/index',
         meta: { title: '首页', icon: 'highlight' },
         children: [
           {
             path: 'index2',
             name: 'Index2',
-            component: () => import('@/views/About.vue'),
+            component: () => import('@/views/home/index.vue'),
             meta: { title: '测试1', icon: 'check-square' },
             children: [
               {
                 path: 'index4',
                 name: 'Index4',
-                component: () => import('@/views/About.vue'),
+                component: () => import('@/views/home/details.vue'),
                 meta: { title: '测试1', icon: 'edit' }
               }
             ]
@@ -56,7 +56,7 @@ export const routes = [
       {
         path: 'index3',
         name: 'Index3',
-        // component: RouterTransition,
+        component: () => import('@/views/home/details.vue'),
         meta: { title: '测试3', icon: 'ordered-list' }
       },
       {
@@ -70,7 +70,7 @@ export const routes = [
   // {
   //   name: 'Login',
   //   path: '/login',
-  //   component: () => import('@/views/About.vue'),
+  //   component: () => import('@/views/login/login.vue'),
   //   meta: { title: '登录', hidden: true },
   // },
 ];
