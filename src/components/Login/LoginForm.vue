@@ -16,27 +16,44 @@
         </a-input>
       </a-form-model-item>
       <a-form-model-item class="form-item flex-center">
-        <a-button type="primary" size="large" @click="handleSubmit">登录</a-button>
+        <a-button type="primary" size="large" @click="handleSubmit" :loading="loading">登录</a-button>
       </a-form-model-item>
     </a-form-model>
   </div>
 </template>
 
 <script>
+import { message } from 'ant-design-vue';
+
 export default {
   name: 'LoginForm',
   data() {
     return {
       form: {
         username: '',
-        password: ''
+        password: '',
+        loading: false
       }
     };
   },
   methods: {
     async handleSubmit() {
-      const res = await this.$store.dispatch('user/login', this.form);
+      const { username, password } = this.form;
+      if (username.trim() === '' || password.trim() === '') {
+        return message.warning('用户名或密码不能为空！');
+      }
+      message.loading('登录中...', 0);
+      this.loading = true;
+      const res = await this.$store.dispatch('user/login', this.form).finally(() => {
+        this.loading = false;
+        message.destroy();
+      });
       console.log('login :>> ', res);
+
+      if (res) {
+        message.success('登录成功！');
+        this.$router.push('/');
+      }
     }
   }
 };
