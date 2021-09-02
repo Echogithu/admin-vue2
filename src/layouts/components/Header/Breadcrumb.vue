@@ -1,7 +1,13 @@
 <template>
-  <div>
+  <div class="header-left">
     <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="toggleCollapsed" />
-    <span>面包屑</span>
+    <div class="breadcrumb">
+      <a-breadcrumb>
+        <a-breadcrumb-item v-for="routeItem in $route.matched" :key="routeItem.name">
+          <router-link :to="{ name: routeItem.name }">{{ routeItem.meta.title }}</router-link>
+        </a-breadcrumb-item>
+      </a-breadcrumb>
+    </div>
   </div>
 </template>
 
@@ -19,4 +25,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .breadcrumb {
+    display: flex;
+    flex-direction: row;
+    margin-left: 8px;
+  }
+}
+</style>
